@@ -2,6 +2,10 @@
   padding: 20px;
   max-width: 400px;
   margin: 0 auto;
+  flex-grow: 1;
+  width: 100%;
+  border: 1px solid grey;
+  border-radius: 5px;
 }
 .list {
   list-style: none;
@@ -15,4 +19,14 @@
   display: flex;
   align-items: center;
   cursor: pointer;
+}
+.group {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 20px;
+}
+.heading {
+  text-align: center;
+  margin: 5px 5px 20px 5px;
 }

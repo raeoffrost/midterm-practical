@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ProjectList from "./ProjectList";
 import ProjectDetails from "./ProjectDetails";
+import style from "@/styles/List.module.css";
 
 const Main = () => {
   // ********* Project List ***********
@@ -49,10 +50,10 @@ const Main = () => {
 
   // Delete a Project
   // takes the project id
-  // maps over the project list
+  // filters the project list
   //  if id  matches the input one it skips it
   const deleteProject = (projectId) => {
-    setProjects(projects.map((project) => project.id !== projectId));
+    setProjects(projects.filter((project) => project.id !== projectId));
   };
 
   // ********* Update Projects ***********
@@ -93,15 +94,23 @@ const Main = () => {
 
   return (
     <div>
-      <div>
+      <div className={style.heading}>
         <h1>Midterm Practical</h1>
         <h2>Project Management Tool</h2>
       </div>
-      <div>
-        <ProjectList projects={projects} onSelect={selectProject} />
-      </div>
-      <div>
-        <ProjectDetails />
+      <div className={style.group}>
+        <div>
+          <ProjectList projects={projects} onSelect={selectProject} />
+        </div>
+        <div>
+          <ProjectDetails
+            projects={projects}
+            updateName={nameProject}
+            updateDetails={detailsProject}
+            updateStatus={statusProject}
+            onDelete={deleteProject}
+          />
+        </div>
       </div>
     </div>
   );
