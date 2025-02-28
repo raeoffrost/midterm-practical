@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ProjectList from "./ProjectList";
 import ProjectDetails from "./ProjectDetails";
+import ProjectForm from "./ProjectForm";
 import style from "@/styles/List.module.css";
 
 const Main = () => {
@@ -36,11 +37,11 @@ const Main = () => {
   // Add a new project
   // rerenders the list with new project added
   // initializes all details
-  const addProject = () => {
+  const addProject = (name) => {
     const newProject = {
       // set id by finding the highest id then add 1 (or use 0)
       id: Math.max(...projects.map((project) => project.id), 0) + 1,
-      name: "New Project",
+      name: name,
       details: "",
       active: true,
       selected: false,
@@ -107,9 +108,6 @@ const Main = () => {
       <div className={style.group}>
         <div>
           <ProjectList projects={projects} onSelect={selectProject} />
-          <button className={style.btn} onClick={() => addProject()}>
-            + Add Project
-          </button>
         </div>
         <div>
           <ProjectDetails
@@ -120,6 +118,14 @@ const Main = () => {
             onDelete={deleteProject}
           />
         </div>
+      </div>
+      <div>
+        <ProjectForm
+          projects={projects}
+          updateName={nameProject}
+          updateDetails={detailsProject}
+          onAdd={addProject}
+        />
       </div>
     </div>
   );

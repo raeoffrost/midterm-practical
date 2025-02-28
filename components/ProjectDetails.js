@@ -93,8 +93,8 @@ const ProjectDetails = ({ projects, updateName, updateDetails, updateStatus, onD
                     value={textName}
                     onChange={(e) => setTextName(e.target.value)}
                   />
-                  <span style={{ color: "#9e3e2e", fontSize: "small" }}>
-                    {nameError ? "Name field cannot be blank" : ""}
+                  <span style={{ color: "#d40000", fontSize: "small" }}>
+                    {nameError && "Project Name cannot be blank"}
                   </span>
                 </div>
               ) : (

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import style from "@/styles/List.module.css";
 
-// projects and onSelect are given by other components
 const ProjectList = ({ projects, onSelect }) => {
   const [active, setActive] = useState(null);
 
