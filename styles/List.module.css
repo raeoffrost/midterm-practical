@@ -1,9 +1,10 @@
 .panel {
   padding: 20px;
+  min-width: 200px;
   max-width: 400px;
+  width: 100%;
   margin: 0 auto;
   flex-grow: 1;
-  width: 100%;
   border: 1px solid grey;
   border-radius: 5px;
 }
@@ -29,4 +30,29 @@
 .heading {
   text-align: center;
   margin: 5px 5px 20px 5px;
+}
+.details {
+  margin-bottom: 5px;
+  display: flex;
+  flex-direction: column;
+}
+.details div {
+  margin-bottom: 10px;
+}
+.details h4 {
+  margin-bottom: 5px;
+}
+.detailsName {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: center;
+}
+.detailsStatus {
+  margin-bottom: 0px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 10px;
 }
