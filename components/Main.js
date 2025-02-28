@@ -34,16 +34,16 @@ const Main = () => {
   // ********* Project Add & Delete ***********
 
   // Add a new project
-  // takes a project name
   // rerenders the list with new project added
   // initializes the details, status and id
-  const addProject = (name) => {
+  const addProject = () => {
     const newProject = {
       // set id by finding the highest id then add 1 (or use 0)
-      id: Math.max(...projects.map((project) => projects.id), 0) + 1,
-      name: name,
+      id: Math.max(...projects.map((project) => project.id), 0) + 1,
+      name: "New Project",
       details: "",
       active: true,
+      selected: false,
     };
     setProjects([...projects, newProject]);
   };
@@ -101,6 +101,9 @@ const Main = () => {
       <div className={style.group}>
         <div>
           <ProjectList projects={projects} onSelect={selectProject} />
+          <button className={style.btn} onClick={() => addProject()}>
+            + Add Project
+          </button>
         </div>
         <div>
           <ProjectDetails

@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import style from "@/styles/List.module.css";
 
 const ProjectDetails = ({ projects, updateName, updateDetails, updateStatus, onDelete }) => {
-  const [editing, setEditing] = useState(false);
+  const [editName, setEditName] = useState(false);
+  const [editDetails, setEditDetails] = useState(false);
+  const [nameError, setNameError] = useState(false);
 
   const project = projects.filter((project) => {
     return project.selected;
@@ -12,40 +14,46 @@ const ProjectDetails = ({ projects, updateName, updateDetails, updateStatus, onD
   const [textName, setTextName] = useState(selected ? selected.name : "Project Name");
   const [textDetails, setTextDetails] = useState(selected ? selected.details : "Project Details");
 
-  const handleSave = () => {
-    if (textName === "") {
-      alert("ERROR: Project name cannot be blank");
+  const handleSaveName = () => {
+    if (textName.trim() == "") {
+      setNameError(true);
     } else {
-      handleName();
-      handleDetails();
+      if (selected) {
+        setNameError(false);
+        updateName(selected.id, textName);
+        setTextName(selected.name);
+        setEditName(false);
+      }
     }
   };
 
-  const handleName = () => {
-    if (selected) {
-      updateName(selected.id, textName);
-    }
-  };
-  const handleDetails = () => {
+  const handleSaveDetails = () => {
     if (selected) {
       updateDetails(selected.id, textDetails);
+      setTextDetails(selected.details);
+      setEditDetails(false);
     }
   };
+
+  const handleEditName = () => {
+    if (selected) {
+      setTextName(selected.name);
+      setEditName(true);
+    }
+  };
+  const handleEditDetails = () => {
+    if (selected) {
+      setTextDetails(selected.details);
+      setEditDetails(true);
+    }
+  };
+
   const handleDelete = () => {
     if (selected) {
       onDelete(selected.id);
     }
   };
 
-  const btnStyle = {
-    margin: "5px",
-    backgroundColor: "white",
-    color: "black",
-    padding: "5px 10px",
-    border: "1px solid black",
-    borderRadius: "5px",
-    cursor: "pointer",
-  };
   const red = {
     backgroundColor: "#9e3e2e",
     color: "white",
@@ -58,44 +66,65 @@ const ProjectDetails = ({ projects, updateName, updateDetails, updateStatus, onD
       ) : (
         <div className={style.details} key={selected.id}>
           <div className={style.detailsName}>
-            <div>
-              <h3>Project Name</h3>
-              {
-                // if in editing state, it is an input
-                editing ? (
-                  <div>
-                    <input value={textName} onChange={(e) => setTextName(e.target.value)} />
-                  </div>
-                ) : (
-                  <div>
-                    <h4>{selected.name}</h4>
-                  </div>
-                )
-              }
-            </div>
+            {
+              // if in editing state, it is an input
+              editName ? (
+                <div>
+                  <h3>Project Name</h3>
+                  <input
+                    className={style.input}
+                    value={textName}
+                    onChange={(e) => setTextName(e.target.value)}
+                  />
+                  <span style={{ color: "#9e3e2e", fontSize: "small" }}>
+                    {nameError ? "Name field cannot be blank" : ""}
+                  </span>
+                </div>
+              ) : (
+                <div>
+                  <h3>{selected.name}</h3>
+                </div>
+              )
+            }
+
             <button
-              style={btnStyle}
+              className={style.btn}
               onClick={() => {
-                if (editing) {
-                  handleSave();
-                  setEditing(!editing);
+                if (editName) {
+                  handleSaveName();
                 } else {
-                  setEditing(!editing);
-                  setTextName(selected.name);
-                  setTextDetails(selected.details);
+                  handleEditName();
                 }
               }}
             >
-              {editing ? "Save" : "Edit"}
+              {editName ? "Save" : "Edit"}
             </button>
           </div>
           <div>
-            <h4>Details</h4>
+            <div className={style.detailsName}>
+              <h4>Details</h4>
+              <button
+                className={style.btn}
+                onClick={() => {
+                  if (editDetails) {
+                    handleSaveDetails();
+                  } else {
+                    handleEditDetails();
+                  }
+                }}
+              >
+                {editDetails ? "Save" : "Edit"}
+              </button>
+            </div>
             {
-              // if in editing state, it is an input
-              editing ? (
+              // if in editing state, it is a textarea
+              editDetails ? (
                 <div>
-                  <input value={textDetails} onChange={(e) => setTextDetails(e.target.value)} />
+                  <textarea
+                    className={style.input}
+                    value={textDetails}
+                    onChange={(e) => setTextDetails(e.target.value)}
+                  />
                 </div>
               ) : (
                 <div>
@@ -115,7 +144,7 @@ const ProjectDetails = ({ projects, updateName, updateDetails, updateStatus, onD
               <p>{selected.active ? "Incomplete" : "Complete"}</p>
             </div>
           </div>
-          <button style={{ ...btnStyle, ...red }} onClick={handleDelete}>
+          <button style={red} className={style.btn} onClick={handleDelete}>
             DELETE
           </button>
         </div>

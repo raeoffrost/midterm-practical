@@ -1,8 +1,6 @@
 .panel {
   padding: 20px;
-  min-width: 200px;
-  max-width: 400px;
-  width: 100%;
+  width: 300px;
   margin: 0 auto;
   flex-grow: 1;
   border: 1px solid grey;
@@ -47,7 +45,8 @@
   flex-direction: row;
   justify-content: space-between;
   gap: 20px;
-  align-items: center;
+  align-items: flex-end;
+  border-bottom: 1px solid white;
 }
 .detailsStatus {
   margin-bottom: 0px;
@@ -55,4 +54,24 @@
   flex-direction: row;
   justify-content: flex-start;
   gap: 10px;
+}
+
+.input {
+  width: 100%;
+  border: 1px solid grey;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.btn {
+  background-color: white;
+  margin: 5px;
+  color: black;
+  padding: 5px 10px;
+  border: 1px solid black;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.btn:hover {
+  background-color: rgb(235, 235, 235);
 }

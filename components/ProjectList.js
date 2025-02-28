@@ -12,27 +12,35 @@ const ProjectList = ({ projects, onSelect }) => {
     if (active === null) return true;
     return project.active === active;
   });
-
-  const btnStyle = {
-    margin: "5px",
-    backgroundColor: "white",
-    color: "black",
-    padding: "5px 10px",
-    border: "1px solid black",
-    borderRadius: "5px",
-    cursor: "pointer",
+  const activeBtn = {
+    border: "2px solid #7a6ac0",
+    outline: "1px solid #7a6ac0",
   };
-
+  const inactiveBtn = {
+    border: "2px solid white",
+  };
   return (
     <div className={style.panel}>
       <div>
-        <button onClick={() => setActive(null)} style={btnStyle}>
+        <button
+          style={active === null ? activeBtn : inactiveBtn}
+          onClick={() => setActive(null)}
+          className={style.btn}
+        >
           All
         </button>
-        <button onClick={() => setActive(true)} style={btnStyle}>
+        <button
+          style={active === true ? activeBtn : inactiveBtn}
+          onClick={() => setActive(true)}
+          className={style.btn}
+        >
           Incomplete
         </button>
-        <button onClick={() => setActive(false)} style={btnStyle}>
+        <button
+          style={active === false ? activeBtn : inactiveBtn}
+          onClick={() => setActive(false)}
+          className={style.btn}
+        >
           Completed
         </button>
       </div>
