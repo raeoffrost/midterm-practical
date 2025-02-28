@@ -1,17 +1,18 @@
 import React, { useState } from "react";
 import style from "@/styles/List.module.css";
 
+// projects and onSelect are given by other components
 const ProjectList = ({ projects, onSelect }) => {
   const [active, setActive] = useState(null);
 
-  // Filter the list
-  // if the active state is null just print the list
-  // else print whatever projects match
-  // the active state of the filter
+  // Filters the project list based on state
+  // if null prints all otherwise prints matching state
   const filterProjects = projects.filter((project) => {
     if (active === null) return true;
     return project.active === active;
   });
+
+  // style to indicate active filter
   const activeBtn = {
     border: "2px solid #7a6ac0",
     outline: "1px solid #7a6ac0",
@@ -19,6 +20,7 @@ const ProjectList = ({ projects, onSelect }) => {
   const inactiveBtn = {
     border: "2px solid white",
   };
+
   return (
     <div className={style.panel}>
       <div>
@@ -49,6 +51,8 @@ const ProjectList = ({ projects, onSelect }) => {
           {filterProjects.length === 0 ? (
             <p>No projects yet!</p>
           ) : (
+            // renders project list based on filters/state
+            // some styles are determined by state or info from other components
             filterProjects.map((project) => (
               <li
                 key={project.id}

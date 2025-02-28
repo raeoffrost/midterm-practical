@@ -6,15 +6,22 @@ const ProjectDetails = ({ projects, updateName, updateDetails, updateStatus, onD
   const [editDetails, setEditDetails] = useState(false);
   const [nameError, setNameError] = useState(false);
 
+  // finds the selected project and makes it a single item array
   const project = projects.filter((project) => {
     return project.selected;
   });
+  // set single item array to a variable
   const selected = project[0];
 
+  // set name and details based on select state
   const [textName, setTextName] = useState(selected ? selected.name : "Project Name");
   const [textDetails, setTextDetails] = useState(selected ? selected.details : "Project Details");
 
+  // ******** Save Functions *******
+  // saves name and removes edit mode
   const handleSaveName = () => {
+    // Error handling
+    // Prevents save without input
     if (textName.trim() == "") {
       setNameError(true);
     } else {
@@ -27,6 +34,7 @@ const ProjectDetails = ({ projects, updateName, updateDetails, updateStatus, onD
     }
   };
 
+  // saves details and removes edit mode
   const handleSaveDetails = () => {
     if (selected) {
       updateDetails(selected.id, textDetails);
@@ -35,19 +43,23 @@ const ProjectDetails = ({ projects, updateName, updateDetails, updateStatus, onD
     }
   };
 
+  // ******** Edit Functions *******
+
+  // sets edit name mode and updates placeholder text
   const handleEditName = () => {
     if (selected) {
       setTextName(selected.name);
       setEditName(true);
     }
   };
+  // sets edit details mode and updates placeholder text
   const handleEditDetails = () => {
     if (selected) {
       setTextDetails(selected.details);
       setEditDetails(true);
     }
   };
-
+  // ***** Delete *****
   const handleDelete = () => {
     if (selected) {
       onDelete(selected.id);
@@ -59,6 +71,11 @@ const ProjectDetails = ({ projects, updateName, updateDetails, updateStatus, onD
     color: "white",
     fontWeight: 800,
   };
+
+  // returns page based on state
+  // if nothing is selected the page will only display the help text
+  // if something is selected the page will display relevant details
+  // and allow save and edit functionality
   return (
     <div className={style.panel}>
       {!selected ? (

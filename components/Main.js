@@ -24,7 +24,7 @@ const Main = () => {
     },
     {
       id: 4,
-      name: "Complete Project",
+      name: "Complete Midterm",
       details: "Finish by Friday",
       active: false,
       selected: false,
@@ -35,7 +35,7 @@ const Main = () => {
 
   // Add a new project
   // rerenders the list with new project added
-  // initializes the details, status and id
+  // initializes all details
   const addProject = () => {
     const newProject = {
       // set id by finding the highest id then add 1 (or use 0)
@@ -49,9 +49,8 @@ const Main = () => {
   };
 
   // Delete a Project
-  // takes the project id
-  // filters the project list
-  //  if id  matches the input one it skips it
+  // takes the project id and filters array
+  // If id matches the input it skips it
   const deleteProject = (projectId) => {
     setProjects(projects.filter((project) => project.id !== projectId));
   };
@@ -59,7 +58,7 @@ const Main = () => {
   // ********* Update Projects ***********
 
   // Update the project name
-  // remaps the projects, if the id matches update the name
+  // maps the projects, if the id matches input updates the name
   const nameProject = (projectId, newName) => {
     setProjects(
       projects.map((project) =>
@@ -68,6 +67,8 @@ const Main = () => {
     );
   };
 
+  // Update the project details
+  // maps the projects, if the id matches input updates the details
   const detailsProject = (projectId, newDetails) => {
     setProjects(
       projects.map((project) =>
@@ -76,6 +77,8 @@ const Main = () => {
     );
   };
 
+  // Update the project status
+  // maps the projects, if the id matches input swaps the status
   const statusProject = (projectId) => {
     setProjects(
       projects.map((project) =>
@@ -84,6 +87,9 @@ const Main = () => {
     );
   };
 
+  // Update the project select state
+  // maps the projects, if the id matches input sets it selected
+  // sets all other projects de-selected
   const selectProject = (projectId) => {
     setProjects(
       projects.map((project) =>
