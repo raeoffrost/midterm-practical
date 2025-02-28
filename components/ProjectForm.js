@@ -41,8 +41,9 @@ const ProjectForm = ({ onAdd }) => {
               onChange={(e) => setName(e.target.value)}
             ></input>
             <span style={{ color: "#d40000", fontSize: "small" }}>
-              {error && "Error: Project name cannot be blank"}{" "}
+              {error && "Error: Project name cannot be blank "}
             </span>
+            <br />
             <button type="submit" className={style.btn}>
               Add Project
             </button>
