@@ -26,6 +26,9 @@ export default function Home() {
         <main className={styles.main}>
           <Main />
         </main>
+        <footer className={styles.footer}>
+          <p>By: Abby Friesen</p>
+        </footer>
       </div>
     </>
   );

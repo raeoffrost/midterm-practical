@@ -99,7 +99,7 @@ const ProjectDetails = ({ projects, updateName, updateDetails, updateStatus, onD
                 </div>
               ) : (
                 <div>
-                  <h3>{selected.name}</h3>
+                  <h3 className={style.over}>{selected.name}</h3>
                 </div>
               )
             }
@@ -139,12 +139,13 @@ const ProjectDetails = ({ projects, updateName, updateDetails, updateStatus, onD
                 <div>
                   <textarea
                     className={style.input}
+                    style={{ height: "100px", overflow: "scroll" }}
                     value={textDetails}
                     onChange={(e) => setTextDetails(e.target.value)}
                   />
                 </div>
               ) : (
-                <div>
+                <div className={style.over}>
                   <p>{selected.details}</p>
                 </div>
               )

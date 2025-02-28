@@ -21,7 +21,7 @@ const ProjectForm = ({ onAdd }) => {
     <div style={{ width: "100%", marginTop: "20px" }}>
       {editing ? (
         <div>
-          <form noValidate>
+          <form onSubmit={saveProject}>
             <label for="projectName">
               <h3 style={{ marginBottom: "6px" }}>New Project Name</h3>
             </label>
@@ -35,10 +35,10 @@ const ProjectForm = ({ onAdd }) => {
             <span style={{ color: "#d40000", fontSize: "small" }}>
               {error && "Error: Project name cannot be blank"}{" "}
             </span>
+            <button type="submit" className={style.btn}>
+              Add Project
+            </button>
           </form>
-          <button type="submit" className={style.btn} onClick={(e) => saveProject(e)}>
-            Add Project
-          </button>
         </div>
       ) : (
         <button className={style.btn} onClick={() => setEditing(true)}>

@@ -12,12 +12,20 @@
   padding: 5px;
 }
 .project {
+  max-width: 300px;
   padding: 10px 15px;
   margin-bottom: 8px;
   border-radius: 4px;
   display: flex;
   align-items: center;
   cursor: pointer;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-all;
+  hyphens: auto;
+}
+.project li {
+  max-width: 300px;
 }
 .group {
   display: flex;
@@ -55,7 +63,13 @@
   justify-content: flex-start;
   gap: 10px;
 }
-
+.over {
+  max-width: 300px;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-all;
+  hyphens: auto;
+}
 .input {
   width: 100%;
   border: 1px solid grey;
@@ -75,4 +89,12 @@
 }
 .btn:hover {
   background-color: rgb(235, 235, 235);
+}
+@media (max-width: 630px) {
+  .group {
+    flex-direction: column-reverse;
+  }
+  .panel {
+    width: 100%;
+  }
 }
