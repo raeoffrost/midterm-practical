@@ -6,6 +6,14 @@ const ProjectForm = ({ onAdd }) => {
   const [name, setName] = useState("New Project");
   const [error, setError] = useState(false);
 
+  // Saves the new project to project list
+  // prevents default form submission
+  // error handling for blank name
+  // if valid :
+  // clears any errors
+  // adds the project
+  // resets default name
+  // clears editing state
   const saveProject = (e) => {
     e.preventDefault();
     if (name.trim() === "") {
