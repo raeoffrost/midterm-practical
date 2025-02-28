@@ -65,7 +65,8 @@
 
 .btn {
   background-color: white;
-  margin: 5px;
+  margin: 5px 0px;
+  margin-left: 0px;
   color: black;
   padding: 5px 10px;
   border: 1px solid black;

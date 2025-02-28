@@ -15,9 +15,11 @@ const ProjectList = ({ projects, onSelect }) => {
   const activeBtn = {
     border: "2px solid #7a6ac0",
     outline: "1px solid #7a6ac0",
+    marginRight: "10px",
   };
   const inactiveBtn = {
     border: "2px solid white",
+    marginRight: "10px",
   };
 
   return (

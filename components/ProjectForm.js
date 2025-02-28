@@ -18,12 +18,16 @@ const ProjectForm = ({ onAdd }) => {
     }
   };
   return (
-    <div>
+    <div style={{ width: "100%", marginTop: "20px" }}>
       {editing ? (
         <div>
           <form noValidate>
-            <label>Project Name</label>
+            <label for="projectName">
+              <h3 style={{ marginBottom: "6px" }}>New Project Name</h3>
+            </label>
             <input
+              style={{ marginBottom: "6px" }}
+              id="projectName"
               className={style.input}
               value={name}
               onChange={(e) => setName(e.target.value)}
