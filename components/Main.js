@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ProjectList from "./ProjectList";
 import ProjectDetails from "./ProjectDetails";
 
@@ -98,7 +98,7 @@ const Main = () => {
         <h2>Project Management Tool</h2>
       </div>
       <div>
-        <ProjectList />
+        <ProjectList projects={projects} onSelect={selectProject} />
       </div>
       <div>
         <ProjectDetails />

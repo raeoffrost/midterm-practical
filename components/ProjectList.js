@@ -14,10 +14,12 @@ const ProjectList = ({ projects, onSelect }) => {
   });
 
   const btnStyle = {
-    margin: "5px 3px",
+    margin: "5px",
     backgroundColor: "white",
     color: "black",
-    padding: "10px 5px",
+    padding: "5px 10px",
+    border: "1px solid black",
+    borderRadius: "5px",
   };
 
   return (
